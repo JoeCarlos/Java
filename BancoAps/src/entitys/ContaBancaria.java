@@ -9,7 +9,7 @@ package entitys;
  *
  * @author joseo
  */
-public abstract class ContaBancaria implements Imprimivel {
+public abstract class ContaBancaria {
     private long numeroConta;
     private double saldo;
     //private static long contas = [INDEX];
@@ -40,8 +40,5 @@ public abstract class ContaBancaria implements Imprimivel {
         this.saldo = saldo;
     }
     
-    @Override
-    public void mostrarDados(){
-        //s
-    }
+
 }

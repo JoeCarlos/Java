@@ -29,7 +29,8 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel{
     }
     
     @Override
-    public void mostrarDados (){
+    public String mostrarDados (){
+        return null;
         //
     }
 }

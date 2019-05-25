@@ -7,9 +7,13 @@ package entitys;
 
 /**
  *
- * @author joseo
+ * @author 2017102009
  */
-public interface Imprimivel {
+public class Relatorio {
     
-    public String mostrarDados();
+    
+    public String gerarRelatorio (Imprimivel relatorio){
+        //criar e usar um objeto relatorio ---> 
+        return relatorio.mostrarDados();
+    }
 }
