@@ -37,6 +37,7 @@ public class TelaBanco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu2 = new javax.swing.JPopupMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
@@ -46,18 +47,10 @@ public class TelaBanco extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("*********MENU DE OPÇÕES***********");
 
         jMenu2.setText("Conta");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
-            }
-        });
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
+        jMenu2.setComponentPopupMenu(jPopupMenu2);
 
         jCheckBoxMenuItem1.setText("Criar");
         jCheckBoxMenuItem1.setToolTipText("");
@@ -82,9 +75,11 @@ public class TelaBanco extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Relatório");
+        jMenu3.setComponentPopupMenu(jPopupMenu2);
         jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Finalizar");
+        jMenu1.setComponentPopupMenu(jPopupMenu2);
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -104,23 +99,15 @@ public class TelaBanco extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
-
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-             Criar c = new Criar();
+                     Criar c = new Criar();
         c.setEnabled(true);
         c.setVisible(true);
         c.toFront();
         
-    }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
     private void jCheckBoxMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1MouseClicked
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxMenuItem1MouseClicked
     /**
      * @param args the command line arguments
@@ -165,5 +152,6 @@ public class TelaBanco extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     // End of variables declaration//GEN-END:variables
 }
