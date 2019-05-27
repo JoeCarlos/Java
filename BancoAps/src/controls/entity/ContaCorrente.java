@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entitys;
-
+package controls.entity;
 /**
  *
  * @author joseo
  */
 public class ContaCorrente extends ContaBancaria implements Imprimivel{
     private double taxaDeOperacao;
-    
-    public void ContaCorrente (long numeroConta, double saldo, double taxaDeOperacao){
-        super.ContaBacaria(numeroConta, saldo);
+
+    public ContaCorrente(long numeroConta, double saldo, double taxaDeOperacao) {
+        super(numeroConta, saldo);
         this.taxaDeOperacao = taxaDeOperacao;
+    
     }
+
     
             
     @Override

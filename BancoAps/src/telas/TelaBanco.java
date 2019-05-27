@@ -5,7 +5,7 @@
  */
 package telas;
 
-import entitys.ContaBancaria;
+import controls.entity.ContaBancaria;
 import java.util.Scanner;
 
 /**
@@ -21,7 +21,7 @@ public class TelaBanco extends javax.swing.JFrame {
     
     //Lista de contas
     static ContaBancaria[] lista = new ContaBancaria[MAXCONTA];
-    static Scanner tecla = new Scanner(System.in);
+    
     
     
     public TelaBanco() {
@@ -54,11 +54,6 @@ public class TelaBanco extends javax.swing.JFrame {
 
         jCheckBoxMenuItem1.setText("Criar");
         jCheckBoxMenuItem1.setToolTipText("");
-        jCheckBoxMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jCheckBoxMenuItem1MouseClicked(evt);
-            }
-        });
         jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem1ActionPerformed(evt);
@@ -67,19 +62,44 @@ public class TelaBanco extends javax.swing.JFrame {
         jMenu2.add(jCheckBoxMenuItem1);
 
         jCheckBoxMenuItem2.setText("Movimentar");
+        jCheckBoxMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBoxMenuItem2MouseClicked(evt);
+            }
+        });
+        jCheckBoxMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jCheckBoxMenuItem2);
 
         jCheckBoxMenuItem3.setText("Remover");
+        jCheckBoxMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jCheckBoxMenuItem3);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Relatório");
         jMenu3.setComponentPopupMenu(jPopupMenu2);
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Finalizar");
         jMenu1.setComponentPopupMenu(jPopupMenu2);
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -99,16 +119,48 @@ public class TelaBanco extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-                     Criar c = new Criar();
+        Criar c = new Criar();
         c.setEnabled(true);
         c.setVisible(true);
         c.toFront();
-        
+        dispose();
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
-    private void jCheckBoxMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem1MouseClicked
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        Relatorio r = new Relatorio();
+        r.setEnabled(true);
+        r.setVisible(true);
+        r.toFront();
+        dispose();       
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jCheckBoxMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2MouseClicked
+        Movimentar m = new Movimentar();
+        m.setEnabled(true);
+        m.setVisible(true);
+        m.toFront();
+        dispose();
+    }//GEN-LAST:event_jCheckBoxMenuItem2MouseClicked
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        dispose();
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
+             Movimentar m = new Movimentar();
+        m.setEnabled(true);
+        m.setVisible(true);
+        m.toFront();
+        dispose();
+    }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
+
+    private void jCheckBoxMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem3ActionPerformed
+        Remover d = new Remover();
+        d.setEnabled(true);
+        d.setVisible(true);
+        d.toFront();
+        dispose();
+    }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
     /**
      * @param args the command line arguments
      */

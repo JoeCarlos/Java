@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entitys;
+package controls.entity;
 
 /**
  *
@@ -14,10 +14,11 @@ public abstract class ContaBancaria {
     private double saldo;
     //private static long contas = [INDEX];
     
-    public void ContaBacaria(long numeroConta, double saldo){
+    public ContaBancaria(long numeroConta, double saldo){
         this.numeroConta = numeroConta;
         this.saldo = saldo;
     }
+    
     public void sacar (double valor){        
         saldo -= valor;
     }
