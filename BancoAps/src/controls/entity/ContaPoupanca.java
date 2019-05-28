@@ -18,6 +18,12 @@ public class ContaPoupanca extends ContaBancaria{
         this.limite=limite;
     }
  
+    public double getLimite (){
+        return limite;
+    }
+    public void setLimite(double limite){
+        this.limite = limite;
+    }
     @Override
       public void sacar (double valor){
                 super.sacar(valor);

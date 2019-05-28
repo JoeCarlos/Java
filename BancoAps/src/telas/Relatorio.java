@@ -12,7 +12,7 @@ import static telas.TelaBanco.lista;
  * @author joseo
  */
 public class Relatorio extends javax.swing.JFrame {
-
+//    DefaultListModel model = new DefaultListModel();
     /**
      * Creates new form Relatorio
      */
@@ -143,15 +143,16 @@ public class Relatorio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      for (int i = 0; i < lista.length; i++) {
             if (lista[i] != null){
-              
+             // model.addElement(lista[i].); 
+//                jList1.setModel(model);
                 
             }else{
                 break;
             }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+        }
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-    jComboBox1.setEnabled(true);
+    jComboBox1.setEnabled(true); 
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

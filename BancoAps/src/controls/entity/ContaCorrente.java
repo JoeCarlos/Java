@@ -17,7 +17,13 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel{
     
     }
 
+    public double getTaxaDeOperacao(){
+        return taxaDeOperacao;
+    }
     
+    public void setTaxaDeOperacao (double taxaDeOperacao){
+        this.taxaDeOperacao = taxaDeOperacao;
+    }
             
     @Override
     public void sacar (double valor){
@@ -32,6 +38,7 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel{
     @Override
     public String mostrarDados (){
         return null;
+//        long numeroConta = ContaCorrente.super(getNumeroConta());
         //
     }
 }
