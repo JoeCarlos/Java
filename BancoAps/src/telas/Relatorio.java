@@ -5,17 +5,19 @@
  */
 package telas;
 
-import static telas.TelaBanco.lista;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
 
 /**
  *
  * @author joseo
  */
 public class Relatorio extends javax.swing.JFrame {
-//    DefaultListModel model = new DefaultListModel();
     /**
      * Creates new form Relatorio
      */
+    
     public Relatorio() {
         initComponents();
         jComboBox1.setEnabled(false);
@@ -141,16 +143,9 @@ public class Relatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     for (int i = 0; i < lista.length; i++) {
-            if (lista[i] != null){
-             // model.addElement(lista[i].); 
-//                jList1.setModel(model);
-                
-            }else{
-                break;
-            }
+        //
     }//GEN-LAST:event_jButton1ActionPerformed
-        }
+        
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
     jComboBox1.setEnabled(true); 
     }//GEN-LAST:event_jRadioButton2ActionPerformed

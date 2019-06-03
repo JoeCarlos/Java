@@ -13,15 +13,7 @@ import java.util.Scanner;
  * @author joseo
  */
 public class TelaBanco extends javax.swing.JFrame {    
-//Constante
-    static final int MAXCONTA = 20;
-   
-    //variável comum
-    static int index = 0;
-    
-    //Lista de contas
-    static ContaBancaria[] lista = new ContaBancaria[MAXCONTA];
-    
+//Constante   
     
     
     public TelaBanco() {
