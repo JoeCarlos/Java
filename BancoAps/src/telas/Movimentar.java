@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package telas;
+import controls.entity.Banco;
 
 /**
  *
@@ -65,6 +66,11 @@ public class Movimentar extends javax.swing.JFrame {
         });
 
         jButton3.setText("Confirmar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Localizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,9 +158,8 @@ public class Movimentar extends javax.swing.JFrame {
                                 .addComponent(jRadioButton2)
                                 .addGap(30, 30, 30)
                                 .addComponent(jRadioButton3))))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTextField2)
+                    .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,6 +253,17 @@ public class Movimentar extends javax.swing.JFrame {
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
          jTextField3.setEnabled(true);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if  (jRadioButton1.isEnabled()){
+            long conta1 = Long.parseLong(jTextField1.getText());
+            long conta2 = Long.parseLong(jTextField3.getText());
+            double valor = Double.parseDouble(jTextField2.getText());
+            Banco banco = new Banco();
+            
+           banco.procurar();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

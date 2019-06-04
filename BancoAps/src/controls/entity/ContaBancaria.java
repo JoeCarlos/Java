@@ -26,6 +26,10 @@ public abstract class ContaBancaria {
             saldo += valor;
     }
     
+    public void tranferir (double valor, ContaBancaria contaDe, ContaBancaria contaPara){
+        
+    }
+    
     public long getNumeroConta (){
         return numeroConta;
     }
