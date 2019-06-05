@@ -5,7 +5,9 @@
  */
 package telas;
 
+import controls.entity.Banco;
 import controls.entity.ContaBancaria;
+import controls.entity.ContaCorrente;
 import java.util.Scanner;
 
 /**
@@ -15,9 +17,19 @@ import java.util.Scanner;
 public class TelaBanco extends javax.swing.JFrame {    
 //Constante   
     
+    private static Banco banco = new Banco();
+    
+    public static Banco getBanco(){
+        return TelaBanco.banco;
+    }
+    
+    public void ligaTela(){
+        this.setVisible(true);
+    }
     
     public TelaBanco() {
         initComponents();
+        banco.inserir(new ContaCorrente(2017, 500, 5));
     }
 
     /**
@@ -30,6 +42,7 @@ public class TelaBanco extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu2 = new javax.swing.JPopupMenu();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
@@ -40,6 +53,13 @@ public class TelaBanco extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("*********MENU DE OPÇÕES***********");
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu2.setText("Conta");
         jMenu2.setComponentPopupMenu(jPopupMenu2);
@@ -100,11 +120,17 @@ public class TelaBanco extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(159, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(137, 137, 137))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jButton1)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,11 +165,12 @@ public class TelaBanco extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
-             Movimentar m = new Movimentar();
+        Movimentar m = new Movimentar(this);
         m.setEnabled(true);
         m.setVisible(true);
         m.toFront();
-        dispose();
+        //dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
 
     private void jCheckBoxMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem3ActionPerformed
@@ -153,6 +180,10 @@ public class TelaBanco extends javax.swing.JFrame {
         d.toFront();
         dispose();
     }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -189,6 +220,7 @@ public class TelaBanco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;

@@ -83,6 +83,7 @@ public class Criar extends javax.swing.JFrame {
         jLabel5.setText("Escolha o tipo de conta:");
 
         buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Conta Corrente");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

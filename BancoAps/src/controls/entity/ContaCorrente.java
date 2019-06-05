@@ -17,6 +17,12 @@ public class ContaCorrente extends ContaBancaria implements Imprimivel{
     
     }
 
+    public ContaCorrente(long numeroConta) {
+        super(numeroConta);
+    }
+    
+    
+
     public double getTaxaDeOperacao(){
         return taxaDeOperacao;
     }

@@ -17,6 +17,11 @@ public class ContaPoupanca extends ContaBancaria{
         super(numeroConta, saldo);
         this.limite=limite;
     }
+
+    public ContaPoupanca(long numeroConta) {
+        super(numeroConta);
+    }
+    
  
     public double getLimite (){
         return limite;

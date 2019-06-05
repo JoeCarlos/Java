@@ -5,6 +5,9 @@
  */
 package telas;
 import controls.entity.Banco;
+import controls.entity.ContaBancaria;
+import controls.entity.ContaCorrente;
+import controls.entity.ContaPoupanca;
 
 /**
  *
@@ -12,11 +15,14 @@ import controls.entity.Banco;
  */
 public class Movimentar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Movimentar
-     */
+    private TelaBanco tela;
     public Movimentar() {
         initComponents();
+    }
+    
+    public Movimentar(TelaBanco tela) {
+        initComponents();
+        this.tela = tela;
     }
 
     /**
@@ -32,9 +38,9 @@ public class Movimentar extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldNumeroConta = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonLocalizar = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -59,9 +65,9 @@ public class Movimentar extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNumeroConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldNumeroContaActionPerformed(evt);
             }
         });
 
@@ -72,10 +78,10 @@ public class Movimentar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Localizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLocalizar.setText("Localizar");
+        jButtonLocalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonLocalizarActionPerformed(evt);
             }
         });
 
@@ -144,12 +150,12 @@ public class Movimentar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(131, 131, 131))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
@@ -176,8 +182,8 @@ public class Movimentar extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jTextFieldNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonLocalizar))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
@@ -218,9 +224,9 @@ public class Movimentar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldNumeroContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroContaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldNumeroContaActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -234,16 +240,30 @@ public class Movimentar extends javax.swing.JFrame {
        jTextField3.setEnabled(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocalizarActionPerformed
+        Long numeroConta = Long.parseLong(jTextFieldNumeroConta.getText());
+        
+        ContaBancaria conta =  TelaBanco.getBanco().procurar(new ContaCorrente(numeroConta));
+        
+        if(conta == null){
+            conta = TelaBanco.getBanco().procurar(new ContaPoupanca(numeroConta));
+        }
+        
+        System.out.println("Conta localizada: " + conta);      
+        
+        
+        
+    }//GEN-LAST:event_jButtonLocalizarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        TelaBanco t = new TelaBanco();
+        /*TelaBanco t = new TelaBanco();
         t.setEnabled(true);
         t.setVisible(true);
         t.toFront();
-        dispose();
+        dispose();*/
+        this.dispose();
+        tela.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -256,12 +276,12 @@ public class Movimentar extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if  (jRadioButton1.isEnabled()){
-            long conta1 = Long.parseLong(jTextField1.getText());
+            long conta1 = Long.parseLong(jTextFieldNumeroConta.getText());
             long conta2 = Long.parseLong(jTextField3.getText());
             double valor = Double.parseDouble(jTextField2.getText());
             Banco banco = new Banco();
             
-           banco.procurar();
+         //  banco.procurar();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -302,9 +322,9 @@ public class Movimentar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonLocalizar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -313,8 +333,8 @@ public class Movimentar extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldNumeroConta;
     // End of variables declaration//GEN-END:variables
 }

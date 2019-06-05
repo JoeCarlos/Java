@@ -18,6 +18,12 @@ public abstract class ContaBancaria {
         this.numeroConta = numeroConta;
         this.saldo = saldo;
     }
+
+    public ContaBancaria(long numeroConta) {
+        this.numeroConta = numeroConta;
+    }
+    
+    
     
     public void sacar (double valor){        
         saldo -= valor;
