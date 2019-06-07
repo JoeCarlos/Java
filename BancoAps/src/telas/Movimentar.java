@@ -8,6 +8,7 @@ import controls.entity.Banco;
 import controls.entity.ContaBancaria;
 import controls.entity.ContaCorrente;
 import controls.entity.ContaPoupanca;
+import app.App;
 
 /**
  *
@@ -37,18 +38,18 @@ public class Movimentar extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextFieldNumeroConta = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButtonLocalizar = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        btnFechar = new javax.swing.JButton();
+        txtNumeroContaDe = new javax.swing.JTextField();
+        btnConfirmar = new javax.swing.JButton();
+        btnLocalizar = new javax.swing.JButton();
+        jRadioDepositar = new javax.swing.JRadioButton();
+        jRadioSacar = new javax.swing.JRadioButton();
+        jRadioTransferir = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtNumeroContaPara = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Movimentar Contas");
@@ -58,71 +59,72 @@ public class Movimentar extends javax.swing.JFrame {
 
         jLabel2.setText("Informe o número da conta:");
 
-        jButton2.setText("Fechar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnFecharActionPerformed(evt);
             }
         });
 
-        jTextFieldNumeroConta.addActionListener(new java.awt.event.ActionListener() {
+        txtNumeroContaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumeroContaActionPerformed(evt);
+                txtNumeroContaDeActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Confirmar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnConfirmarActionPerformed(evt);
             }
         });
 
-        jButtonLocalizar.setText("Localizar");
-        jButtonLocalizar.addActionListener(new java.awt.event.ActionListener() {
+        btnLocalizar.setText("Localizar");
+        btnLocalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLocalizarActionPerformed(evt);
+                btnLocalizarActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Depositar");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioDepositar);
+        jRadioDepositar.setSelected(true);
+        jRadioDepositar.setText("Depositar");
+        jRadioDepositar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                jRadioDepositarActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Sacar");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioSacar);
+        jRadioSacar.setText("Sacar");
+        jRadioSacar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                jRadioSacarActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Transferir");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioTransferir);
+        jRadioTransferir.setText("Transferir");
+        jRadioTransferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                jRadioTransferirActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Informe o valor:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtValorActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Número da conta:");
 
-        jTextField3.setText("                           ");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtNumeroContaPara.setText("                           ");
+        txtNumeroContaPara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtNumeroContaParaActionPerformed(evt);
             }
         });
 
@@ -131,14 +133,14 @@ public class Movimentar extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4)
-            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtNumeroContaPara, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumeroContaPara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
@@ -150,29 +152,29 @@ public class Movimentar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButtonLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2)
-                                    .addComponent(jTextFieldNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNumeroContaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(131, 131, 131))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(jRadioButton1)
+                                .addComponent(jRadioDepositar)
                                 .addGap(26, 26, 26)
-                                .addComponent(jRadioButton2)
+                                .addComponent(jRadioSacar)
                                 .addGap(30, 30, 30)
-                                .addComponent(jRadioButton3))))
-                    .addComponent(jTextField2)
+                                .addComponent(jRadioTransferir))))
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                            .addComponent(btnConfirmar)
+                            .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,25 +184,25 @@ public class Movimentar extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLocalizar))
+                    .addComponent(txtNumeroContaDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalizar))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jRadioDepositar)
+                    .addComponent(jRadioSacar)
+                    .addComponent(jRadioTransferir))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnConfirmar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnFechar)
                         .addGap(9, 9, 9))))
         );
 
@@ -224,38 +226,37 @@ public class Movimentar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNumeroContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroContaActionPerformed
+    private void txtNumeroContaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroContaDeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumeroContaActionPerformed
+    }//GEN-LAST:event_txtNumeroContaDeActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtValorActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtNumeroContaParaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroContaParaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtNumeroContaParaActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-       jTextField3.setEnabled(false);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void jRadioDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioDepositarActionPerformed
+       txtNumeroContaPara.setEnabled(false);
+    }//GEN-LAST:event_jRadioDepositarActionPerformed
 
-    private void jButtonLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocalizarActionPerformed
-        Long numeroConta = Long.parseLong(jTextFieldNumeroConta.getText());
-        
-        ContaBancaria conta =  TelaBanco.getBanco().procurar(new ContaCorrente(numeroConta));
+    private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
+        Long numeroConta = Long.parseLong(txtNumeroContaDe.getText());
+        ContaBancaria conta =  App.getBanco().procurar(conta)
         
         if(conta == null){
-            conta = TelaBanco.getBanco().procurar(new ContaPoupanca(numeroConta));
+            conta = App.getBanco().procurar(new ContaPoupanca(numeroConta));
         }
         
         System.out.println("Conta localizada: " + conta);      
         
         
         
-    }//GEN-LAST:event_jButtonLocalizarActionPerformed
+    }//GEN-LAST:event_btnLocalizarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         /*TelaBanco t = new TelaBanco();
         t.setEnabled(true);
         t.setVisible(true);
@@ -264,26 +265,26 @@ public class Movimentar extends javax.swing.JFrame {
         this.dispose();
         tela.setVisible(true);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnFecharActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        jTextField3.setEnabled(false);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void jRadioSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioSacarActionPerformed
+        txtNumeroContaPara.setEnabled(false);
+    }//GEN-LAST:event_jRadioSacarActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-         jTextField3.setEnabled(true);
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    private void jRadioTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioTransferirActionPerformed
+         txtNumeroContaPara.setEnabled(true);
+    }//GEN-LAST:event_jRadioTransferirActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if  (jRadioButton1.isEnabled()){
-            long conta1 = Long.parseLong(jTextFieldNumeroConta.getText());
-            long conta2 = Long.parseLong(jTextField3.getText());
-            double valor = Double.parseDouble(jTextField2.getText());
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        if  (jRadioDepositar.isEnabled()){
+            long conta1 = Long.parseLong(txtNumeroContaDe.getText());
+            long conta2 = Long.parseLong(txtNumeroContaPara.getText());
+            double valor = Double.parseDouble(txtValor.getText());
             Banco banco = new Banco();
             
          //  banco.procurar();
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,20 +322,20 @@ public class Movimentar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnFechar;
+    private javax.swing.JButton btnLocalizar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonLocalizar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextFieldNumeroConta;
+    private javax.swing.JRadioButton jRadioDepositar;
+    private javax.swing.JRadioButton jRadioSacar;
+    private javax.swing.JRadioButton jRadioTransferir;
+    private javax.swing.JTextField txtNumeroContaDe;
+    private javax.swing.JTextField txtNumeroContaPara;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

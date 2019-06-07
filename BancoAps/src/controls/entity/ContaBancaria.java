@@ -12,7 +12,7 @@ package controls.entity;
 public abstract class ContaBancaria {
     private long numeroConta;
     private double saldo;
-    //private static long contas = [INDEX];
+
     
     public ContaBancaria(long numeroConta, double saldo){
         this.numeroConta = numeroConta;
@@ -23,14 +23,12 @@ public abstract class ContaBancaria {
         this.numeroConta = numeroConta;
     }
     
+    	public ContaBancaria() {
+		super();
+	}
     
-    
-    public void sacar (double valor){        
-        saldo -= valor;
-    }
-    public void depositar (double valor){
-            saldo += valor;
-    }
+	public abstract void sacar(double valor);
+	public abstract void depositar(double valor);
     
     public void tranferir (double valor, ContaBancaria contaDe, ContaBancaria contaPara){
         

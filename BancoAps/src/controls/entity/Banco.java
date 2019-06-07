@@ -28,7 +28,7 @@ public void remover (ContaBancaria conta){
         }
     }
 }        
-public ContaBancaria procurar(ContaBancaria conta){
+public ContaBancaria procurar(Long conta){
     ContaBancaria c = null;
       for (int i = 0; i<= lista.size();i++){
          
