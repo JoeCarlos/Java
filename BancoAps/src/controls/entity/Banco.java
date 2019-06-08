@@ -7,19 +7,32 @@ package controls.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author joseo
  */
 public class Banco {
-    List<ContaBancaria> lista = new ArrayList<>();
+   private List<ContaBancaria> lista = new ArrayList<>();
     
-public void inserir (ContaBancaria conta){
+public void inserir (ContaBancaria obj){
     //
-   lista.add(conta);
+          if (lista.contains(obj)) {
+            JOptionPane.showMessageDialog(null, "Conta já cadastrada!", "ERRO", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            lista.add(obj);
+            JOptionPane.showMessageDialog(null, "Conta cadastrada com sucesso!", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+
+        }
 }
-public void remover (ContaBancaria conta){
+
+
+    public List<ContaBancaria> getContas() {
+        return lista;
+    }
+
+    public void remover (ContaBancaria conta){
     for (int i = 0; i<= lista.size();i++){
         ContaBancaria c = lista.get(i);
         if (c.equals(conta)){
@@ -29,16 +42,23 @@ public void remover (ContaBancaria conta){
     }
 }        
 public ContaBancaria procurar(Long conta){
-    ContaBancaria c = null;
-      for (int i = 0; i<= lista.size();i++){
-         
-          if (lista.equals(conta.getNumeroConta())){
-              c = lista.get(i);
-              break;
-          }
-     
-      }
-        return c;
+        ContaBancaria contaBancaria = new ContaCorrente(conta);
+        Integer index;
+
+        index = lista.indexOf(contaBancaria);
+
+        if (index != -1) {
+            return lista.get(index);
+        } else {
+            contaBancaria = new ContaPoupanca(conta);
+            index = lista.indexOf(contaBancaria);
+        }
+
+        if (index != -1) {
+            return lista.get(index);
+        } else {
+            return null;
+        }
         
         } 
 }

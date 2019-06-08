@@ -9,6 +9,7 @@ import controls.entity.ContaBancaria;
 import controls.entity.ContaCorrente;
 import controls.entity.ContaPoupanca;
 import app.App;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -243,16 +244,23 @@ public class Movimentar extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioDepositarActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        Long numeroConta = Long.parseLong(txtNumeroContaDe.getText());
-        ContaBancaria conta =  App.getBanco().procurar(conta)
-        
-        if(conta == null){
-            conta = App.getBanco().procurar(new ContaPoupanca(numeroConta));
+    try {
+            this.conta = App.getBanco().procurar(Long.parseLong(txtNumeroContaDe.getText()));
+            txtValor.setEnabled(true);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, prencha todos os campos!\nApenas NÚMEROS!", "ERRO", JOptionPane.PLAIN_MESSAGE);
+            txtValor.setEnabled(false);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Conta inexistente", "ERRO", JOptionPane.PLAIN_MESSAGE);
+            txtValor.setEnabled(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro desconhecido!\nContate a T.I e informe o seguinte erro: " + e.toString(), "ERRO", JOptionPane.PLAIN_MESSAGE);
+            txtValor.setEnabled(false);
         }
-        
-        System.out.println("Conta localizada: " + conta);      
-        
-        
+
+        if (false) {
+            JOptionPane.showMessageDialog(null, "Conta localizada com sucesso!", "SUCESSO!", JOptionPane.PLAIN_MESSAGE);
+        }
         
     }//GEN-LAST:event_btnLocalizarActionPerformed
 

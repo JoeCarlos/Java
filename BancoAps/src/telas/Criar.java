@@ -19,7 +19,6 @@ public class Criar extends javax.swing.JFrame {
      */
     public Criar() {
         initComponents();
-        jPanel1.setVisible(false);
         
     }
 
@@ -169,28 +168,18 @@ public class Criar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
-        long numeroConta =Long.parseLong(txtNumeroConta.getText());
-        double saldo = Double.parseDouble(txtSaldo.getText());
-         double taxaDeOperacaoOuLimite = Double.parseDouble(txtTaxOuLim.getText());
-         
-        if (jRadioCorrente.isSelected()){
-         ContaCorrente conta = new ContaCorrente(numeroConta, saldo,taxaDeOperacaoOuLimite);
-        }   
-        else {
-        ContaPoupanca conta = new ContaPoupanca(numeroConta, saldo,taxaDeOperacaoOuLimite);
-        }
+ContaCorrente contaCorrente = new ContaCorrente(Long.parseLong(txtNumeroConta.getText()), Double.parseDouble(txtSaldo.getText()), Double.parseDouble(txtTaxOuLim.getText()));
         
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void jRadioPoupancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioPoupancaActionPerformed
         jLabel5.setText("Limite: ");
-        jPanel1.setVisible(true);
+
       
     }//GEN-LAST:event_jRadioPoupancaActionPerformed
 
     private void jRadioCorrenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCorrenteActionPerformed
         jLabel5.setText("TAXA:");
-        jPanel1.setVisible(true);
         
     }//GEN-LAST:event_jRadioCorrenteActionPerformed
 

@@ -94,7 +94,7 @@ public class Remover extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**
