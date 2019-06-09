@@ -5,8 +5,18 @@
  */
 package telas;
 
-import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
+//import controls.entity.ContaBancaria;
+
+import javax.swing.DefaultComboBoxModel;
+
+//import controls.entity.ContaCorrente;
+//import controls.entity.ContaPoupanca;
+//import controls.entity.Imprimivel;
+//import controls.entity.RelatorioC;
+//import java.util.List;
+//import javax.swing.DefaultListModel;
+//import javax.swing.JOptionPane;
+//import telas.TelaBanco;
 
 
 /**
@@ -17,12 +27,16 @@ public class Relatorio extends javax.swing.JFrame {
     /**
      * Creates new form Relatorio
      */
-    
+    //DefaultListModel model = new DeJlist jList1 = new List (model);
+   
+       private Boolean todas = true;
     public Relatorio() {
         initComponents();
         jComboConta.setEnabled(false);
     }
-
+    public boolean getTodas (){
+        return todas;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,23 +154,72 @@ public class Relatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioSimActionPerformed
-       jComboConta.setEnabled(false);
+         String lista[] = new String[1];
+        lista[0] = "Selecione uma conta";
+        jComboConta.setModel(new DefaultComboBoxModel<>(lista));
+        jComboConta.setSelectedIndex(0);
+        jComboConta.setEnabled(false);
+
+        this.todas = true;
     }//GEN-LAST:event_jRadioSimActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        //
+ /*        RelatorioC report = new RelatorioC();
+         
+         if (this.todas) {
+            jList1.setText("");
+            
+            for (ContaBancaria contaBancaria : TelaBanco.getBanco().getContas()) {
+                jList1.addElement(jList1.getText().concat(report.gerarRelatorio((Imprimivel) contaBancaria) + "\n ------------------------ \n"));
+                .addElement(report.gerarRelatorio((Imprimivel) contaBancaria) + "\n---------------------------\n");
+            }
+        } else {
+            ContaBancaria conta = null;
+            try {
+            Long numeroConta = Long.valueOf(jComboConta.getSelectedItem().toString());
+            Integer index = TelaBanco.getBanco().getContas().indexOf(new ContaCorrente(numeroConta));
+            
+                if (index != -1) {
+                    conta = TelaBanco.getBanco().getContas().get(index);
+                } else {
+                    conta = TelaBanco.getBanco().getContas().get(TelaBanco.getBanco().getContas().indexOf(new ContaPoupanca(numeroConta)));
+                }
+                jList1.setText("");
+                jList1.setText(report.gerarRelatorio((Imprimivel) conta));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(null, "Selecione uma conta válida.", "ERRO", JOptionPane.PLAIN_MESSAGE);
+            } catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "Selecione uma conta válida.", "ERRO", JOptionPane.PLAIN_MESSAGE);                
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro desconhecido!" + e.toString(), "ERRO", JOptionPane.PLAIN_MESSAGE);
+            }
+
+        }
     }//GEN-LAST:event_btnVisualizarActionPerformed
-        
+  */   }   
     private void jRadioBuNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBuNaoActionPerformed
-    jComboConta.setEnabled(true); 
+           String lista[] = new String[TelaBanco.getBanco().getContas().size()];
+        for (int i = 0; i < lista.length; i++) {
+            lista[i] = String.valueOf(TelaBanco.getBanco().getContas().get(i).getNumeroConta());
+        }
+        String listaFinal[] = new String[lista.length + 1];
+        listaFinal[0] = "Selecione uma conta";
+        for (int i = 0; i < listaFinal.length; i++) {
+            if (i + 1 < listaFinal.length) {
+                listaFinal[i + 1] = lista[i];
+            }
+
+        }
+        jComboConta.setModel(new DefaultComboBoxModel<>(listaFinal));
+        jComboConta.setEnabled(true);
+
+        this.todas = false;
     }//GEN-LAST:event_jRadioBuNaoActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        TelaBanco t = new TelaBanco();
-        t.setEnabled(true);
+                TelaBanco t = new TelaBanco();
         t.setVisible(true);
-        t.toFront();
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnFecharActionPerformed
 
     /**

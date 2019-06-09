@@ -6,10 +6,7 @@
 package telas;
 
 import controls.entity.Banco;
-import controls.entity.ContaBancaria;
-import controls.entity.ContaCorrente;
-import java.util.Scanner;
-import app.App;
+
 
 /**
  *
@@ -18,13 +15,21 @@ import app.App;
 public class TelaBanco extends javax.swing.JFrame {    
 //Constante   
     
+    private static final Banco banco = new Banco();
 
-    public void ligaTela(){
-        this.setVisible(true);
+    public static Banco getBanco() {
+        return banco;
+    }
+    
+    public void desligaTela(){
+        this.setVisible(false);
     }
     
     public TelaBanco() {
         initComponents();        
+    }
+    public void ligaTela (){
+        this.setVisible(true);
     }
 
     /**
@@ -37,24 +42,16 @@ public class TelaBanco extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu2 = new javax.swing.JPopupMenu();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         menuCriar = new javax.swing.JCheckBoxMenuItem();
-        menuMovimentar = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuRemover = new javax.swing.JCheckBoxMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("*********MENU DE OPÇÕES***********");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jMenu2.setText("Conta");
         jMenu2.setComponentPopupMenu(jPopupMenu2);
@@ -68,25 +65,15 @@ public class TelaBanco extends javax.swing.JFrame {
         });
         jMenu2.add(menuCriar);
 
-        menuMovimentar.setText("Movimentar");
-        menuMovimentar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuMovimentarMouseClicked(evt);
-            }
-        });
-        menuMovimentar.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Movimentar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuMovimentarActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(menuMovimentar);
+        jMenu2.add(jMenuItem1);
 
         menuRemover.setText("Remover");
-        menuRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuRemoverActionPerformed(evt);
-            }
-        });
         jMenu2.add(menuRemover);
 
         jMenuBar1.add(jMenu2);
@@ -115,17 +102,11 @@ public class TelaBanco extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(137, 137, 137))
+            .addGap(0, 369, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jButton1)
-                .addContainerGap(182, Short.MAX_VALUE))
+            .addGap(0, 319, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,49 +117,28 @@ public class TelaBanco extends javax.swing.JFrame {
         c.setEnabled(true);
         c.setVisible(true);
         c.toFront();
-        dispose();
+        desligaTela();
     }//GEN-LAST:event_menuCriarActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         Relatorio r = new Relatorio();
         r.setEnabled(true);
         r.setVisible(true);
-        r.toFront();
-        dispose();       
+        r.toFront();     
+        desligaTela();
     }//GEN-LAST:event_jMenu3MouseClicked
 
-    private void menuMovimentarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMovimentarMouseClicked
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Movimentar m = new Movimentar();
         m.setEnabled(true);
         m.setVisible(true);
         m.toFront();
-        dispose();
-    }//GEN-LAST:event_menuMovimentarMouseClicked
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        dispose();
-    }//GEN-LAST:event_jMenu1MouseClicked
-
-    private void menuMovimentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMovimentarActionPerformed
-        Movimentar m = new Movimentar(this);
-        m.setEnabled(true);
-        m.setVisible(true);
-        m.toFront();
-        //dispose();
-        this.setVisible(false);
-    }//GEN-LAST:event_menuMovimentarActionPerformed
-
-    private void menuRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRemoverActionPerformed
-        Remover d = new Remover();
-        d.setEnabled(true);
-        d.setVisible(true);
-        d.toFront();
-        dispose();
-    }//GEN-LAST:event_menuRemoverActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+        desligaTela();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -215,14 +175,13 @@ public class TelaBanco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JCheckBoxMenuItem menuCriar;
-    private javax.swing.JCheckBoxMenuItem menuMovimentar;
     private javax.swing.JCheckBoxMenuItem menuRemover;
     // End of variables declaration//GEN-END:variables
 }

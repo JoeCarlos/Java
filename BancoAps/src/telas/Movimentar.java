@@ -8,7 +8,6 @@ import controls.entity.Banco;
 import controls.entity.ContaBancaria;
 import controls.entity.ContaCorrente;
 import controls.entity.ContaPoupanca;
-import app.App;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Movimentar extends javax.swing.JFrame {
 
+       private ContaBancaria conta = null;
     private TelaBanco tela;
     public Movimentar() {
         initComponents();
@@ -67,12 +67,6 @@ public class Movimentar extends javax.swing.JFrame {
             }
         });
 
-        txtNumeroContaDe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroContaDeActionPerformed(evt);
-            }
-        });
-
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,20 +108,9 @@ public class Movimentar extends javax.swing.JFrame {
 
         jLabel3.setText("Informe o valor:");
 
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Número da conta:");
 
         txtNumeroContaPara.setText("                           ");
-        txtNumeroContaPara.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroContaParaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,26 +210,16 @@ public class Movimentar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumeroContaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroContaDeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroContaDeActionPerformed
-
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
-
-    private void txtNumeroContaParaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroContaParaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroContaParaActionPerformed
-
     private void jRadioDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioDepositarActionPerformed
        txtNumeroContaPara.setEnabled(false);
+       this.conta.depositar(Double.parseDouble(txtValor.getText()));
     }//GEN-LAST:event_jRadioDepositarActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
     try {
-            this.conta = App.getBanco().procurar(Long.parseLong(txtNumeroContaDe.getText()));
+            this.conta = TelaBanco.getBanco().procurar(Long.parseLong(txtNumeroContaDe.getText()));
             txtValor.setEnabled(true);
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Por favor, prencha todos os campos!\nApenas NÚMEROS!", "ERRO", JOptionPane.PLAIN_MESSAGE);
             txtValor.setEnabled(false);
@@ -265,30 +238,42 @@ public class Movimentar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        /*TelaBanco t = new TelaBanco();
-        t.setEnabled(true);
+        TelaBanco t = new TelaBanco();
         t.setVisible(true);
-        t.toFront();
-        dispose();*/
-        this.dispose();
-        tela.setVisible(true);
+       this.setVisible(false);
         
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void jRadioSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioSacarActionPerformed
         txtNumeroContaPara.setEnabled(false);
+        this.conta.sacar(Double.parseDouble(txtValor.getText()));
     }//GEN-LAST:event_jRadioSacarActionPerformed
 
     private void jRadioTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioTransferirActionPerformed
          txtNumeroContaPara.setEnabled(true);
+
     }//GEN-LAST:event_jRadioTransferirActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         if  (jRadioDepositar.isEnabled()){
-            long conta1 = Long.parseLong(txtNumeroContaDe.getText());
-            long conta2 = Long.parseLong(txtNumeroContaPara.getText());
-            double valor = Double.parseDouble(txtValor.getText());
-            Banco banco = new Banco();
+         ContaBancaria contaTrans = null;
+                         Double valor = 0.0;
+                try {
+                    contaTrans = TelaBanco.getBanco().procurar(Long.parseLong(txtNumeroContaPara.getText()));
+                    valor = Double.parseDouble(txtValor.getText());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Por favor, prencha todos os campos!\nApenas NÚMEROS!", "ERRO", JOptionPane.PLAIN_MESSAGE);
+                } catch (NullPointerException e) {
+                    JOptionPane.showMessageDialog(null, "Conta inexistente", "ERRO", JOptionPane.PLAIN_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro desconhecido!\nContate a T.I e informe o seguinte erro: " + e.toString(), "ERRO", JOptionPane.PLAIN_MESSAGE);
+                }
+
+                if (contaTrans != null) {
+               TelaBanco.getBanco().transferir(valor, conta, contaTrans);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Conta inexistente", "ERRO", JOptionPane.PLAIN_MESSAGE);
+                }
             
          //  banco.procurar();
         }

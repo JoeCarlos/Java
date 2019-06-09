@@ -8,7 +8,8 @@ package controls.entity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-
+import controls.entity.Banco;
+import controls.entity.ContaBancaria;
 /**
  *
  * @author joseo
@@ -31,16 +32,19 @@ public void inserir (ContaBancaria obj){
     public List<ContaBancaria> getContas() {
         return lista;
     }
-
-    public void remover (ContaBancaria conta){
+    
+    public void remover (Long conta){
     for (int i = 0; i<= lista.size();i++){
         ContaBancaria c = lista.get(i);
-        if (c.equals(conta)){
+        if ((c.getNumeroConta() == conta)){
             lista.remove(i);
             break;
         }
     }
 }        
+    public void transferir(double valor, ContaBancaria conta, ContaBancaria contaTrans){
+        
+    }
 public ContaBancaria procurar(Long conta){
         ContaBancaria contaBancaria = new ContaCorrente(conta);
         Integer index;

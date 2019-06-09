@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package telas;
-
+import javax.swing.JOptionPane;
+import telas.TelaBanco;
+import controls.entity.Banco;
 /**
  *
  * @author joseo
@@ -87,14 +89,29 @@ public class Remover extends javax.swing.JFrame {
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         TelaBanco t = new TelaBanco();
-        t.setEnabled(true);
         t.setVisible(true);
-        t.toFront();
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
      
+        Integer opcao = JOptionPane.showConfirmDialog(null, "Tem certeza?\nEsta operação NÃO PODERÁ SER DESFEITA!", "CERTEZA?", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if ((opcao == JOptionPane.CLOSED_OPTION) || (opcao == JOptionPane.NO_OPTION)) {
+            return;
+            
+        } else {
+            try {
+                TelaBanco.getBanco().remover(Long.parseLong(txtNumeroConta.getText()));
+                JOptionPane.showMessageDialog(null, "Conta Removida", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, prencha todos os campos!\nApenas NÚMEROS!", "ERRO", JOptionPane.PLAIN_MESSAGE);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Conta inexistente", "ERRO", JOptionPane.PLAIN_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro desconhecido!\nContate a T.I e informe o seguinte erro: " + e.toString(), "ERRO", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**

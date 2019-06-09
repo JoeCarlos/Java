@@ -7,13 +7,14 @@ package telas;
 import controls.entity.ContaCorrente;
 import controls.entity.ContaPoupanca;
 import controls.entity.Banco;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author 2017102009
  */
 public class Criar extends javax.swing.JFrame {
-    
+        private Boolean tipoConta = true;
     /**
      * Creates new form Criar
      */
@@ -86,12 +87,6 @@ public class Criar extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Infome o saldo: ");
-
-        txtTaxOuLim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTaxOuLimActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -168,32 +163,41 @@ public class Criar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
-ContaCorrente contaCorrente = new ContaCorrente(Long.parseLong(txtNumeroConta.getText()), Double.parseDouble(txtSaldo.getText()), Double.parseDouble(txtTaxOuLim.getText()));
-        
+        try {
+            if (tipoConta) {
+                ContaCorrente contaCorrente = new ContaCorrente(Long.parseLong(txtNumeroConta.getText()), Double.parseDouble(txtTaxOuLim.getText()), Double.parseDouble(txtSaldo.getText()));
+                TelaBanco.getBanco().inserir(contaCorrente);
+            } else {
+                ContaPoupanca contaPoupanca = new ContaPoupanca(Long.parseLong(txtNumeroConta.getText()), Double.parseDouble(txtSaldo.getText()), Double.parseDouble(txtTaxOuLim.getText()));
+                TelaBanco.getBanco().inserir(contaPoupanca);
+            }
+            //JOptionPane.showMessageDialog(null, "Conta cadastrada com sucesso!", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, prencha todos os campos!\nApenas NÚMEROS!", "ERRO", JOptionPane.PLAIN_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro desconhecido!" + e.toString(), "ERRO", JOptionPane.PLAIN_MESSAGE);
+        }
+       
+             
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void jRadioPoupancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioPoupancaActionPerformed
         jLabel5.setText("Limite: ");
-
+        tipoConta = false;
       
     }//GEN-LAST:event_jRadioPoupancaActionPerformed
 
     private void jRadioCorrenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCorrenteActionPerformed
         jLabel5.setText("TAXA:");
-        
+        tipoConta = true;
     }//GEN-LAST:event_jRadioCorrenteActionPerformed
 
     private void BtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFecharActionPerformed
-        TelaBanco t = new TelaBanco();
-        t.setEnabled(true);
+            TelaBanco t = new TelaBanco();
         t.setVisible(true);
-        t.toFront();
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_BtnFecharActionPerformed
-
-    private void txtTaxOuLimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaxOuLimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTaxOuLimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,7 +231,8 @@ ContaCorrente contaCorrente = new ContaCorrente(Long.parseLong(txtNumeroConta.ge
             public void run() {
                 new Criar().setVisible(true);
             }
-        });
+}  );
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -244,4 +249,5 @@ ContaCorrente contaCorrente = new ContaCorrente(Long.parseLong(txtNumeroConta.ge
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtTaxOuLim;
     // End of variables declaration//GEN-END:variables
+
 }
