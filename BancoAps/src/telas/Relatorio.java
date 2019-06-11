@@ -7,16 +7,14 @@ package telas;
 
 //import controls.entity.ContaBancaria;
 
+import controls.entity.Banco;
+import controls.entity.ContaBancaria;
+import controls.entity.ContaCorrente;
+import controls.entity.ContaPoupanca;
+import controls.entity.Imprimivel;
+import controls.entity.RelatorioC;
 import javax.swing.DefaultComboBoxModel;
-
-//import controls.entity.ContaCorrente;
-//import controls.entity.ContaPoupanca;
-//import controls.entity.Imprimivel;
-//import controls.entity.RelatorioC;
-//import java.util.List;
-//import javax.swing.DefaultListModel;
-//import javax.swing.JOptionPane;
-//import telas.TelaBanco;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -24,12 +22,9 @@ import javax.swing.DefaultComboBoxModel;
  * @author joseo
  */
 public class Relatorio extends javax.swing.JFrame {
-    /**
-     * Creates new form Relatorio
-     */
-    //DefaultListModel model = new DeJlist jList1 = new List (model);
-   
-       private Boolean todas = true;
+    Banco banco = TelaBanco.getBanco();
+
+    private Boolean todas = true;
     public Relatorio() {
         initComponents();
         jComboConta.setEnabled(false);
@@ -53,9 +48,9 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboConta = new javax.swing.JComboBox<>();
         btnVisualizar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         btnFechar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Relatório de Contas");
@@ -90,14 +85,14 @@ public class Relatorio extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
-
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFecharActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setViewportView(jEditorPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,23 +105,23 @@ public class Relatorio extends javax.swing.JFrame {
                         .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnFechar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jRadioSim)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jRadioBuNao))
-                                        .addComponent(jLabel1))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(1, 1, 1)
-                                            .addComponent(jComboConta, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel2)))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jRadioSim)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jRadioBuNao))
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jComboConta, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2))
+                                .addGap(12, 12, 12))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,8 +138,8 @@ public class Relatorio extends javax.swing.JFrame {
                     .addComponent(jComboConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnVisualizar)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFechar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -164,14 +159,14 @@ public class Relatorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioSimActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
- /*        RelatorioC report = new RelatorioC();
-         
-         if (this.todas) {
-            jList1.setText("");
+    RelatorioC report = new RelatorioC();
+
+        if (this.todas) {
+            jEditorPane.setText("");
             
-            for (ContaBancaria contaBancaria : TelaBanco.getBanco().getContas()) {
-                jList1.addElement(jList1.getText().concat(report.gerarRelatorio((Imprimivel) contaBancaria) + "\n ------------------------ \n"));
-                .addElement(report.gerarRelatorio((Imprimivel) contaBancaria) + "\n---------------------------\n");
+            for (ContaBancaria contaBancaria : banco.getContas()) {
+                jEditorPane.setText(jEditorPane.getText().concat(report.gerarRelatorio((Imprimivel) contaBancaria) + "\n ------------------------ \n"));
+            
             }
         } else {
             ContaBancaria conta = null;
@@ -184,8 +179,8 @@ public class Relatorio extends javax.swing.JFrame {
                 } else {
                     conta = TelaBanco.getBanco().getContas().get(TelaBanco.getBanco().getContas().indexOf(new ContaPoupanca(numeroConta)));
                 }
-                jList1.setText("");
-                jList1.setText(report.gerarRelatorio((Imprimivel) conta));
+                jEditorPane.setText("");
+                jEditorPane.setText(report.gerarRelatorio((Imprimivel) conta));
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(null, "Selecione uma conta válida.", "ERRO", JOptionPane.PLAIN_MESSAGE);
             } catch (NumberFormatException e){
@@ -195,8 +190,14 @@ public class Relatorio extends javax.swing.JFrame {
             }
 
         }
+        for (ContaBancaria conta : banco.getContas()) {
+            System.out.println(conta.getNumeroConta());
+        }
+
+               
+       
     }//GEN-LAST:event_btnVisualizarActionPerformed
-  */   }   
+       
     private void jRadioBuNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBuNaoActionPerformed
            String lista[] = new String[TelaBanco.getBanco().getContas().size()];
         for (int i = 0; i < lista.length; i++) {
@@ -262,9 +263,9 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JButton btnVisualizar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> jComboConta;
+    private javax.swing.JEditorPane jEditorPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JRadioButton jRadioBuNao;
     private javax.swing.JRadioButton jRadioSim;
     private javax.swing.JScrollPane jScrollPane1;

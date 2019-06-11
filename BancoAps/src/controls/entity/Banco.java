@@ -8,14 +8,13 @@ package controls.entity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import controls.entity.Banco;
-import controls.entity.ContaBancaria;
+
 /**
  *
  * @author joseo
  */
 public class Banco {
-   private List<ContaBancaria> lista = new ArrayList<>();
+   private final List<ContaBancaria> lista = new ArrayList<>();
     
 public void inserir (ContaBancaria obj){
     //

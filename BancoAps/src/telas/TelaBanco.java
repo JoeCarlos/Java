@@ -74,6 +74,11 @@ public class TelaBanco extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
 
         menuRemover.setText("Remover");
+        menuRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRemoverActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuRemover);
 
         jMenuBar1.add(jMenu2);
@@ -139,6 +144,14 @@ public class TelaBanco extends javax.swing.JFrame {
         m.toFront();
         desligaTela();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRemoverActionPerformed
+        Remover r = new Remover();
+        r.setEnabled(true);
+        r.setVisible(true);
+        r.toFront();
+        desligaTela();
+    }//GEN-LAST:event_menuRemoverActionPerformed
     /**
      * @param args the command line arguments
      */
